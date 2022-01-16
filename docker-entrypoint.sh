@@ -10,6 +10,14 @@ handle() {
 
 trap handle INT TERM
 
+refresh() {
+	SIGNAL=$(( $? - 128 ))
+	echo "Caught signal ${SIGNAL}, refreshing"
+	kill -s ${SIGNAL} $(pidof node) 2>/dev/null
+}
+
+trap refresh HUP
+
 if ! which -- "${1}"; then
   # first arg is not an executable
   xvfb-run -a --server-args="-screen 0 1024x768x24" -- node /app/ "$@" &

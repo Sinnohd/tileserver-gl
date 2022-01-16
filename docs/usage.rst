@@ -29,8 +29,10 @@ Default preview style and configuration
 - If no configuration file is specified, a default preview style (compatible with openmaptiles) is used.
 - If no mbtiles file is specified (and is not found in the current working directory), a sample file is downloaded (showing the Zurich area)
 
-Reloading configuration
+Reloading the configuration
 ======
 
 It is possible to reload the configuration file without restarting the whole process by sending a SIGHUP signal to the node process.
-However, this does not currently work when running the tileserver-gl docker container (the signal is not passed to the subprocess, see https://github.com/maptiler/tileserver-gl/issues/420#issuecomment-597507663).
+
+- The `docker kill -s HUP tileserver-gl` command can be used when running the tileserver-gl docker container.
+- The `docker-compose -s HUP tileserver-gl-service-name` can be used when tileserver-gl is run as a docker-compose service.
