@@ -1,4 +1,4 @@
-FROM node:10-buster AS builder
+FROM node:16-bullseye-slim AS builder
 
 RUN export DEBIAN_FRONTEND=noninteractive \
   && apt-get -qq update \
@@ -11,7 +11,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
       libcairo2-dev \
       libgles2-mesa-dev \
       libgbm-dev \
-      libllvm7 \
+      llvm \
       libprotobuf-dev \
   && apt-get -y --purge autoremove \
   && apt-get clean \
@@ -24,7 +24,7 @@ ENV NODE_ENV="production"
 RUN cd /usr/src/app && npm install --production
 
 
-FROM node:14.18.3-bullseye-slim AS final
+FROM node:16-bullseye-slim AS final
 
 RUN export DEBIAN_FRONTEND=noninteractive \
   && apt-get -qq update \
