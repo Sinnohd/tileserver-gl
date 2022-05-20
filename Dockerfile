@@ -24,7 +24,7 @@ ENV NODE_ENV="production"
 RUN cd /usr/src/app && npm install --production
 
 
-FROM node:14.18.3-bullseye-slim AS final
+FROM node:14.19.2-bullseye-slim AS final
 
 RUN export DEBIAN_FRONTEND=noninteractive \
   && apt-get -qq update \
