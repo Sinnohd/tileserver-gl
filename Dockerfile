@@ -1,4 +1,4 @@
-FROM ubuntu:focal AS builder
+FROM ubuntu:20.04 AS builder
 
 ENV NODE_ENV="production"
 
@@ -34,7 +34,7 @@ COPY package* /usr/src/app/
 
 RUN cd /usr/src/app && npm ci --omit=dev
 
-FROM ubuntu:focal AS final
+FROM ubuntu:20.04 AS final
 
 ENV \
     NODE_ENV="production" \
